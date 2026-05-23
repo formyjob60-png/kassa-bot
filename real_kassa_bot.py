@@ -1,3 +1,4 @@
+import os
 # real_kassa_bot.py
 import json
 import random
@@ -17,7 +18,8 @@ from telegram.ext import (
     filters,
 )
 
-TOKEN = "8808897780:AAFmRgjUtPDNG46GAX7h8PrQaCZo3Je8Gps"
+
+TOKEN = os.getenv("TOKEN")
 ADMIN_ID = 7400308603
 
 months = [
