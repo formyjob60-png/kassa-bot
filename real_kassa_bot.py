@@ -11,11 +11,11 @@ from telegram import (
 )
 
 from telegram.ext import (
-    Application,
+    Updater,
     CommandHandler,
-    ContextTypes,
+    CallbackContext,
     MessageHandler,
-    filters,
+    Filters,
 )
 
 
@@ -674,7 +674,8 @@ load_history()
 # =========================
 
 
-app = Application.builder().token(TOKEN).build()
+updater = Updater(TOKEN, use_context=True)
+dispatcher = updater.dispatcher
 
 app.post_init = set_commands
 
@@ -710,5 +711,6 @@ job_queue.run_daily(
 
 print("✅ Бот запущен")
 
-app.run_polling()
+updater.start_polling()
+updater.idle()
 
