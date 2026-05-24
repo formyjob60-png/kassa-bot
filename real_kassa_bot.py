@@ -341,13 +341,11 @@ async def remove_friend(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def join(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    
     user = update.effective_user
 
-    name = user.username or user.first_name
+    user_id = str(user.id)
 
-
-    if name in friends:
+    if user_id in friends:
 
         await update.message.reply_text(
             "⚠️ Ты уже участвуешь в кассе"
@@ -355,14 +353,13 @@ async def join(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         return
 
-    friends.append(name)
+    friends.append(user_id)
 
     save_friends()
 
     await update.message.reply_text(
-        f"✅ {name} теперь участвует в кассе"
+        f"✅ {user.first_name} теперь участвует в кассе"
     )
-
 
 async def leave(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
