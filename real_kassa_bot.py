@@ -602,6 +602,21 @@ async def next_month(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
 
+async def finish_kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    global current_queue
+    global current_index
+
+    current_queue.clear()
+
+    current_index = 0
+
+    save_queue()
+
+    await update.message.reply_text(
+        "❌ Текущая касса завершена"
+    )
+
 # =========================
 # BUTTONS
 # =========================
@@ -702,6 +717,9 @@ app.add_handler(CommandHandler("pay", pay))
 app.add_handler(CommandHandler("payments", show_payments))
 
 app.add_handler(CommandHandler("nextmonth", next_month))
+app.add_handler(CommandHandler("finish", finish_kassa))
+
+
 
 # BUTTONS
 app.add_handler(
