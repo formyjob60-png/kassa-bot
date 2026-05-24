@@ -674,43 +674,20 @@ load_history()
 # =========================
 
 
-updater = Updater(TOKEN, use_context=True)
-dispatcher = updater.dispatcher
 
-app.post_init = set_commands
+app = Application.builder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("help", help_command))
-app.add_handler(CommandHandler("add", add_friend))
-app.add_handler(CommandHandler("join", join))
-app.add_handler(CommandHandler("leave", leave))
-app.add_handler(CommandHandler("remove", remove_friend))
-app.add_handler(CommandHandler("members", members))
-app.add_handler(CommandHandler("pay", pay))
-app.add_handler(CommandHandler("payments", show_payments))
-app.add_handler(CommandHandler("history", show_history))
-app.add_handler(CommandHandler("nextmonth", next_month))
 
-app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, buttons))
-
-job_queue = app.job_queue
-
-job_queue.run_monthly(
-    auto_next_month,
-    when=time(hour=18, minute=0),
-    day=-1,
+app.add_handler(
+    MessageHandler(
+        filters.TEXT & ~filters.COMMAND,
+        handle_message
+    )
 )
 
-job_queue.run_daily(
-    auto_reminder,
-    time(hour=18, minute=0),
-    days=(4,),
-    chat_id=-1003979172349,
-)
+print("Бот запущен...")
+app.run_polling()
 
-
-print("✅ Бот запущен")
-
-updater.start_polling()
-updater.idle()
 
