@@ -682,10 +682,10 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
 
         await update.message.reply_text(
-            "🤖 Добро пожаловать\n\n"
-            "Нажми /start для начала работы 😎"
-        )
-        
+        "❓ Неизвестная команда"
+    )
+
+
 # =========================
 # AUTO NEXT MONTH
 # =========================
