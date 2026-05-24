@@ -341,7 +341,11 @@ async def remove_friend(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def join(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    name = update.effective_user.first_name
+    
+    user = update.effective_user
+
+    name = user.username or user.first_name
+
 
     if name in friends:
 
@@ -362,7 +366,11 @@ async def join(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def leave(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    name = update.effective_user.first_name
+    
+    user = update.effective_user
+
+    name = user.username or user.first_name
+
 
     if name not in friends:
 
