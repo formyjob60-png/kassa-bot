@@ -475,8 +475,6 @@ async def kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     save_history()
 
-    history_month_index = (history_month_index + 1) % 12
-
     message = "────────────\n"
     message += "🎲 КАССА\n"
     message += "────────────\n\n"
@@ -583,6 +581,10 @@ async def next_month(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     current_index = (current_index + 1) % len(current_queue)
+    
+    history_month_index = (history_month_index + 1) % 12
+
+    save_month()
 
     save_queue()
 
