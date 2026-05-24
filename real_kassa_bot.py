@@ -448,9 +448,9 @@ async def kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         return
         
-    if len(current_queue) > 0 and current_index < len(current_queue):
+    if current_queue:
 
-       await update.message.reply_text(
+        await update.message.reply_text(
         "⛔ Текущая касса ещё не завершена"
     )
 
@@ -601,18 +601,17 @@ async def next_month(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "➡️ Касса перешла к следующему человеку"
         )
 
-
 async def finish_kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     global current_queue
     global current_index
     global payments
 
-    current_queue = []
+    current_queue.clear()
 
     current_index = 0
 
-    payments = {}
+    payments.clear()
 
     save_queue()
 
@@ -621,7 +620,6 @@ async def finish_kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "❌ Текущая касса завершена"
     )
-
 
 # =========================
 # BUTTONS
