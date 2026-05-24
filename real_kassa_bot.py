@@ -668,18 +668,6 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
 
-    user = update.effective_user
-
-    name = user.username or user.first_name
-
-    if name not in friends:
-
-        await update.message.reply_text(
-            "❗ Сначала вступите в кассу:\n/join"
-        )
-
-        return
-
     if text == "🎲 Жеребьёвка":
 
         await kassa(update, context)
