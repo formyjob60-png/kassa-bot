@@ -153,6 +153,37 @@ def load_history():
     except:
         history = []
 
+def load_month():
+
+    global history_month_index
+
+    try:
+
+        with open("month.json", "r", encoding="utf-8") as file:
+
+            data = json.load(file)
+
+            history_month_index = data["month_index"]
+
+    except:
+
+        history_month_index = 4
+
+
+def save_month():
+
+    data = {
+        "month_index": history_month_index
+    }
+
+    with open("month.json", "w", encoding="utf-8") as file:
+
+        json.dump(
+            data,
+            file,
+            ensure_ascii=False,
+            indent=4
+        )
 
 # =========================
 # START
@@ -695,6 +726,8 @@ load_payments()
 load_friends()
 load_queue()
 load_history()
+load_month()
+
 
 
 # =========================
