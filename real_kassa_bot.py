@@ -587,8 +587,12 @@ async def next_month(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if current_index == 0:
 
+        current_queue.clear()
+
+        save_queue()
+
         await update.message.reply_text(
-            "✅ Касса завершена\n🎲 Можно делать новую жеребьёвку"
+            "✅ Касса завершена\n\n🎲 Сделайте новую жеребьёвку"
         )
 
     else:
