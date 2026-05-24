@@ -668,30 +668,48 @@ async def finish_kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # =========================
 
 
+
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
 
-    if "Жеребь" in text:
+    user = update.effective_user
+
+    name = user.username or user.first_name
+
+    if name not in friends:
+
+        await update.message.reply_text(
+            "❗ Сначала вступите в кассу:\n/join"
+        )
+
+        return
+
+    if text == "🎲 Жеребьёвка":
+
         await kassa(update, context)
 
-    elif "Кто отвечает" in text:
-        await next_person(update, context)
+    elif text == "📅 Кто отвечает":
 
-    elif "Напомнить" in text:
+        await current_person(update, context)
+
+    elif text == "📋 Очередь":
+
+        await show_queue(update, context)
+
+    elif text == "📢 Напомнить":
+
         await remind(update, context)
 
-    elif "Очередь" in text:
-        await queue(update, context)
+    elif text == "📜 История":
 
-    elif "История" in text:
         await show_history(update, context)
-        
+
     else:
 
         await update.message.reply_text(
-        "❓ Неизвестная команда"
-    )
+            "❓ Неизвестная команда"
+        )
 
 
 # =========================
