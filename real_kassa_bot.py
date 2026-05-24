@@ -689,11 +689,11 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif text == "📅 Кто отвечает":
 
-        await current_person(update, context)
+        await next_person(update, context)
 
     elif text == "📋 Очередь":
 
-        await show_queue(update, context)
+        await queue(update, context)
 
     elif text == "📢 Напомнить":
 
@@ -708,6 +708,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "❓ Неизвестная команда"
         )
+
 
 # =========================
 # AUTO NEXT MONTH
