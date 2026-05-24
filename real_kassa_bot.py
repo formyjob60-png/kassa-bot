@@ -175,6 +175,8 @@ async def set_commands(app):
         BotCommand("history", "История кассы"),
 
         BotCommand("nextmonth", "Следующий месяц"),
+        
+        BotCommand("finish", "Завершить кассу"),
 
         BotCommand("add", "Добавить участника"),
 
@@ -606,16 +608,22 @@ async def finish_kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     global current_queue
     global current_index
+    global payments
 
-    current_queue.clear()
+    current_queue = []
 
     current_index = 0
 
+    payments = {}
+
     save_queue()
+
+    save_payments()
 
     await update.message.reply_text(
         "❌ Текущая касса завершена"
     )
+
 
 # =========================
 # BUTTONS
