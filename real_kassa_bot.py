@@ -447,16 +447,14 @@ async def kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
         return
+        
+    if len(current_queue) > 0 and current_index < len(current_queue):
 
-    
-    if len(current_queue) > 0:
-
-        await update.message.reply_text(
+       await update.message.reply_text(
         "⛔ Текущая касса ещё не завершена"
     )
 
     return
-
 
     payments = {}
 
