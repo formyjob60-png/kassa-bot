@@ -11,11 +11,11 @@ from telegram import (
 )
 
 from telegram.ext import (
-    Updater,
+    Application,
     CommandHandler,
-    CallbackContext,
     MessageHandler,
-    Filters,
+    ContextTypes,
+    filters
 )
 
 
