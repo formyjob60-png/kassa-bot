@@ -667,8 +667,6 @@ async def finish_kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # BUTTONS
 # =========================
 
-
-
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
@@ -710,7 +708,6 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "❓ Неизвестная команда"
         )
-
 
 # =========================
 # AUTO NEXT MONTH
