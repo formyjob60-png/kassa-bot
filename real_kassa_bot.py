@@ -432,7 +432,6 @@ async def show_history(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # KASSA
 # =========================
 
-
 async def kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     global current_queue
@@ -447,14 +446,14 @@ async def kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
         return
-        
+
     if current_queue:
 
         await update.message.reply_text(
-        "⛔ Текущая касса ещё не завершена"
-    )
+            "⛔ Текущая касса ещё не завершена"
+        )
 
-    return
+        return
 
     payments = {}
 
@@ -481,12 +480,12 @@ async def kassa(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message += "────────────\n\n"
 
     for i, name in enumerate(current_queue, start=1):
+
         message += f"{i}️⃣ {name}\n"
 
     message += "\nУдачи 😎"
 
     await update.message.reply_text(message)
-
 
 # =========================
 # CURRENT PERSON
