@@ -220,14 +220,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         ["🎲 Жеребьёвка"],
         ["📅 Кто отвечает"],
+        ["📋 Очередь"],
         ["📢 Напомнить"],
-        ["📅 Очередь"],
         ["📜 История"],
     ]
 
     reply_markup = ReplyKeyboardMarkup(
         keyboard,
-        resize_keyboard=True,
+        resize_keyboard=True
     )
 
     message = (
@@ -236,22 +236,26 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "📘 Что умеет бот:\n\n"
 
         "🎲 Жеребьёвка — создать кассу\n"
-
         "📅 Кто отвечает — текущий участник\n"
-
-        "📢 Напомнить — напоминание о кассе\n"
-
+        "📋 Очередь — вся очередь\n"
+        "📢 Напомнить — напоминание\n"
         "📜 История — прошлые кассы\n\n"
+
+        "⚙️ Команды:\n"
+        "/nextmonth — следующий месяц\n"
+        "/finish — завершить кассу\n"
+        "/help — все команды\n\n"
 
         "👥 Участие:\n"
         "/join — вступить в кассу\n"
-        "/leave — выйти из кассы\n\n"
+        "/leave — выйти из кассы\n"
+        "/members — список участников\n\n"
 
         "💰 Оплаты:\n"
         "/pay Имя\n"
         "/payments\n\n"
 
-        "Нажми кнопки ниже 👇"
+        "👇 Нажми кнопки ниже"
     )
 
     await update.message.reply_text(
@@ -262,8 +266,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # =========================
 # ADD FRIEND
 # =========================
-
-
 async def add_friend(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     try:
